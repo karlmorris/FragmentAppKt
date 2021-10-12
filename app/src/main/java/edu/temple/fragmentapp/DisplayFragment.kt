@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,10 +39,17 @@ class DisplayFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_display, container, false)
+
+        ViewModelProvider(requireActivity())
+            .get(ColorViewModel::class.java)
+            .getColor().observe(requireActivity(), {
+                changeColor(it)
+            })
+
         return layout
     }
 
-    fun changeColor(color:String) {
+    private fun changeColor(color:String) {
         layout.setBackgroundColor(Color.parseColor(color))
     }
 

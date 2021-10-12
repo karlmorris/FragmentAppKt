@@ -10,11 +10,13 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.lifecycle.ViewModelProvider
 
 class MyFragment : Fragment() {
 
     lateinit var spinner: Spinner
     lateinit var layout: View
+    lateinit var viewModelProvider: ViewModelProvider
 
     var startupIndex : Int? = 0
 
@@ -35,8 +37,7 @@ class MyFragment : Fragment() {
 
         spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                //layout.setBackgroundColor(Color.parseColor(p0?.getItemAtPosition(p2).toString()))
-                (requireActivity() as MyInterface).colorSelected(p0?.getItemAtPosition(p2).toString())
+                viewModelProvider.get(ColorViewModel::class.java).setColor(p0?.getItemAtPosition(p2).toString())
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -50,6 +51,9 @@ class MyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModelProvider = ViewModelProvider(requireActivity())
+
         changeColor(startupIndex)
     }
 
@@ -68,9 +72,4 @@ class MyFragment : Fragment() {
             return fragment
         }
     }
-
-    interface MyInterface {
-        fun colorSelected(color: String)
-    }
-
 }

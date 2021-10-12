@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class MainActivity : AppCompatActivity(), MyFragment.MyInterface {
+class MainActivity : AppCompatActivity() {
 
     lateinit var fragment1: MyFragment
     lateinit var displayFragment: DisplayFragment
@@ -26,15 +26,8 @@ class MainActivity : AppCompatActivity(), MyFragment.MyInterface {
 
         findViewById<Button>(R.id.changeColorButton).setOnClickListener{
             //fragment1.changeColor(3)
-            displayFragment.changeColor("blue")
+            //displayFragment.changeColor("blue")
         }
     }
 
-    fun myFunction() {
-
-    }
-
-    override fun colorSelected(color: String) {
-        displayFragment.changeColor(color)
-    }
 }
