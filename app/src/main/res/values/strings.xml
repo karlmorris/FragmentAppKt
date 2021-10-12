@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FragmentApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="colors">
+        <item>Blue</item>
+        <item>Red</item>
+        <item>Green</item>
+        <item>White</item>
+        <item>Yellow</item>
+    </string-array>
+</resources>
